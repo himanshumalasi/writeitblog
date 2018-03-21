@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Post</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<header>
+	<!-- Navigation -->
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">@writeIt</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('dashboard') }}"> Dashboard </a></li>
+          <li><a href="{{ url_for('allblog') }}"> All Blogs </a></li>
+          <li><a href="{{ url_for('userblog') }}"> Create Blog </a></li>
+          <li><a href="{{ url_for('api') }}"> API </a></li>
+          <li><a href="{{ url_for('logout') }}"> Log Out </a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>
+<body>
+	{% with messages = get_flashed_messages() %}
+	  						{% if messages %}
+	    						{% for message in messages %}
+		  							<div class="alert alert-info alert-dismissible" role="alert">
+		  								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+										{{message}}
+		  							</div>
+								{% endfor %}
+	  						{% endif %}
+						{% endwith %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h1 style="text-align: center;">Your Posts</h1>
+				<div class="jumbotron">
+					{% set paras=d.split('</br>') %}
+			            {% for para in paras%}
+			            	<p>{{para}}</p>
+			            {% endfor %}
+
+			          <!-- Pager 
+			          <div class="clearfix">
+			            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+			          </div>-->
+			</div>
+			</div>
+			<div class="col-md-2"></div>
+        </div>
+	</div>
+</body>
+</html>

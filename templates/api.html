@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+  <title>API Documentation</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href=/static/css/bootstrap.min.css rel="stylesheet">
+  <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href=/static/img6.jpg rel="shortcut icon">
+</head>
+<body>
+  <header>
+    <!--<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">@writeIt</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('dashboard') }}"> Dashboard </a></li>
+          <li><a href="{{ url_for('allblog') }}"> All Blogs </a></li>
+          <li><a href="{{ url_for('userblog') }}"> Create Blog </a></li>
+          <li><a href="{{ url_for('api') }}"> API </a></li>
+          <li><a href="{{ url_for('logout') }}"> Log Out </a></li>
+        </ul>
+      </div>
+          </div>
+  </nav>-->
+  </header>
+  <div class="hero-unit">
+    <h3><strong><u>Developers API</u></strong></h3>
+    <p>This is Writeit developers API documentation page. Here you can find all the information you need to get started with our API.
+    </p>
+    <div style="margin-left: 30px">
+      1. <a href="#1">Your Unique Developer API Key</a><br/>
+      2. <a href="#2">GET request</a><br/>
+      3. <a href="#3">GET request Example</a><br/>
+      4. <a href="#4">POST request</a><br/>
+      5. <a href="#5">POST request Example</a><br/>
+      6. <a href="#6">PATCH request</a><br/>
+      7. <a href="#7">PATCH request Example</a><br/>
+      8. <a href="#8">DELETE request</a><br/>
+      9. <a href="#9">DELETE request Example</a><br/>
+    </div>
+
+    <br>
+    <a name="1"></a>
+    <h3><strong><u>Your Unique Developer API Key</u></strong></h3>
+    <p>Everybody using our API is required to use a valid Developer API Key. You automatically get a key when you become a member. Please login to your account, and check your dashboard to find your Developer API Key.<br></p>
+
+    <br>
+    <a name="2"></a>
+    <h3><strong><u>GET request:</u></strong></h3>
+    <p>With this API, you can obtain a user's all submitted blog in json format. You just need to send a valid GET request to the following URL.
+    <pre style="font-size: 15px;">"https://writeitblog.herokuapp.com/api/blog"</pre>
+    Include all the following <strong>GET</strong> parameters when you request the URL:<br/>
+      <ol>
+        <li><strong>apikey</strong> -this is your API Developer Key</li>
+      </ol>
+      <ol>
+        <li><strong>username</strong> -Your Username</li>
+      </ol>
+    </p>
+
+    <br>
+    <a name="3"></a>
+    <h3><strong><u>GET request Example:</u></strong></h3>
+    <p>Following code is in Python3:</p>
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="https://writeitblog.herokuapp.com/api/blog"
+params={
+    "apikey":"Your_Developer_API_Key",
+    "username":"Your Username"
+}
+r=requests.get(url,params=params)
+print(r.content)
+    </pre>
+
+  <br>
+  <a name="4"></a>
+  <h3><strong><u>POST request:</u></strong></h3>
+  <p>Creating a new blog via our API is very easy. You simply have to send a valid POST request to the URL shown below. Please make sure you are sending the data as the UTF-8 charset!
+  <pre style="font-size: 15px;">"https://writeitblog.herokuapp.com/api/blog"</pre>
+  Include all the following <strong>POST</strong> parameters when you request the URL:<br/>
+  <ol>
+    <li><strong>apikey</strong>- this is your API Developer Key</li>
+    <li><strong>username</strong>- Your Username</li>
+    <li><strong>title</strong>- Title of Blog</li>
+    <li><strong>subtitle</strong>- Subtitle</li>
+    <li><strong>author</strong>- Author Name</li>
+    <li><strong>blogtext</strong>- Text</li>
+  </ol>
+  </p>
+  <a name="10"></a>
+  <div class="alert">
+    <p>Few points to remember while sending a request:
+      <ul>
+        <li>Your title must be unique i.e. there should be no other submission of same title with your key or userid.</li>
+      </ul>
+    </p>
+  </div>
+
+  <br>
+  <a name="5"></a>
+  <h3><strong><u>POST request Example:</u></strong></h3>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="https://writeitblog.herokuapp.com/api/blog"
+data={
+    "apikey":"Your_Developer_API_Key",
+    "username":"Your Username",
+    "title":"Hello_world",
+    "subtitle":"world",
+    "author":"james",
+    "blogtext":"World is a beautiful place."
+    ""
+}
+r=requests.post(url,data=data)
+print(r.content)
+    </pre>
+  </p>
+
+  <br>
+  <a name="6"></a>
+  <h3><strong><u>PATCH request:</u></strong></h3>
+  <p>With this API you can update your submitted code. You will need to send a valid PATCH request to the URL below to update the data:
+    <pre style="font-size: 15px;">"https://writeitblog.herokuapp.com/api/blog"</pre>
+    Include all the following <strong>PATCH</strong> parameters when you request the URL:<br/>
+    <ol>
+      <li><strong>apikey</strong>- this is your API Developer Key</li>
+      <li><strong>otitle</strong>- Old Title of existing blog i.e. blog to be updated.</li>
+      <li><strong>ntitle</strong>- New Title</li>
+      <li><strong>subtitle</strong>- Subtitle</li>
+      <li><strong>author</strong>- Author Name</li>
+      <li><strong>blogtext</strong>- Text</li>
+    </ol>
+  </p>
+
+  <br>
+  <a name="7"></a>
+  <h3><strong><u>PATCH request Example:</u></strong></h3>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="https://writeitblog.herokuapp.com/api/blog"
+data={
+    "apikey":"Your_Developer_API_Key",
+    "otitle1":"Hello_world",
+    "ntitle":"Hello Universe",
+    "subtitle":"Universe",
+    "author":"james",
+    "blogtext":"Universe is beautiful. "
+    ""
+}
+r=requests.patch(url,data=data)
+print(r.content)
+    </pre>
+  </p>
+
+  <br>
+  <a name="8"></a>
+  <h3><strong><u>DELETE request:</u></strong></h3>
+  <p>With this API you can delete your submitted code. You will need to send a valid DELETE request to the URL below to delete the data:
+    <pre style="font-size: 15px;">"https://writeitblog.herokuapp.com/api/blog"</pre>
+    Include all the following <strong>DELETE</strong> parameters when you request the URL:<br/>
+    <ol>
+      <li><strong>apikey</strong>- this is your API Developer Key</li>
+      <li><strong>username</strong>- Your Username</li>
+      <li><strong>title</strong>- Title of existing post i.e. post to be deleted.</li>
+    </ol>
+  </p>
+
+  <br>
+  <a name="9"></a>
+  <h3><strong><u>DELETE request Example:</u></strong></h3>
+  <p>Following code is in Python3:
+    <pre pre-scrollable style="font-size: 15px;">
+import requests
+url="https://writeitblog.herokuapp.com/api/blog"
+data={
+    "apikey":"Your_Developer_API_Key",
+    "username":"Your Username",
+    "title":"Hello Universe"
+}
+r=requests.delete(url,data=data)
+print(r.content)
+    </pre>
+  </p>
+  </div>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

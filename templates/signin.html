@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">@writeIt</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="{{ url_for('homepage') }}"> Home </a></li>
+	        <li><a href="{{ url_for('signup') }}"> Sign Up</a></li>
+	        <li class="active"><a href="#"> Sign In <span class="sr-only">(current)</span></a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	{% if error%}
+		<div class="alert alert-danger alert-dismissable fade in">
+    		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    			<strong>{{ error }}</strong>
+  		</div>
+	{% endif%}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2>
+					Please Login
+					To Continue 
+					To Webpage...
+				</h2>
+			</div>
+					<div class="col-md-6" style="">
+						<div class="jumbotron">
+							
+							<h2>Login</h2>
+							
+						<h3>Please Fill The Details</h3>
+						<form method="POST" enctype="multipart/form-data">
+							<div class="form-group">
+								<label>Username:</label>
+								<input type="name" name="username" class="form-control" placeholder="username">
+							</div>
+							<div class="form-group">
+								<label>Password:</label>
+								<input type="password" name="password" class="form-control" placeholder="password">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success">SUBMIT</button>
+							</div>
+						</form>
+					</div>
+				</div>	
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+</body>
+</html>

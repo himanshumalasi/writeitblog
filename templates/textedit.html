@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<header>
+  <!-- Navigation -->
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">@writeIt</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('dashboard') }}"> Dashboard </a></li>
+          <li><a href="#"> All Blogs </a></li>
+          <li><a href="{{ url_for('userblog') }}"> Create Blog </a></li>
+          <li><a href="{{ url_for('api') }}"> API </a></li>
+          <li><a href="{{ url_for('logout') }}"> Log Out </a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>
+<body>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8"><h1 style="text-align: center; color: black">Edit Your Blog Here...</h1>
+          <form name="blog" id="contactForm" method="POST" action="{{ url_for('newdata',data=datas['title']) }}" >
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Your Blog</label>
+                <textarea rows="5" class="form-control" placeholder="blog" id="blog" name="blogtext" required>{{ datas['blogtext'] }}</textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+ <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+     <!--Contact Form JavaScript -->
+    <script src="static/js/jqBootstrapValidation.js"></script>
+    <!--<script src="static/js/contact_me.js"></script>-->
+
+     <!--Custom scripts for this template -->
+    <script src="static/js/clean-blog.min.js"></script>
+</body>
+</html>

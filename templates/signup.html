@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+		<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">@writeIt</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="{{ url_for('homepage') }}"> Home </a></li>
+	        <li class="active"><a href="#"> Sign Up <span class="sr-only">(current)</span></a></li>
+	        <li><a href="{{ url_for('login') }}"> Sign In </a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+		{% with messages = get_flashed_messages() %}
+	  						{% if messages %}
+	    						{% for message in messages %}
+		  							<div class="alert alert-warning alert-dismissible" role="alert">
+		  								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+												{{message}}
+		  							</div>
+								{% endfor %}
+	  						{% endif %}
+						{% endwith %}
+		<div class="row">
+			<div class="col-md-3">
+				<h2>Please
+				Create Your Account
+				To Continue...</h2>
+			</div>
+					<div class="col-md-6" style="">
+						
+						<div class="jumbotron">
+							<h2>Sign Up</h2>
+						<h3>Please Fill The Details</h3>
+						<form method="POST" action="{{ url_for('signup') }}" role="form" data-toggle="validator" 
+						enctype="multipart/form-data">
+							<div class="form-group">
+								<label>Username:</label>
+								<input type="text" name="username" class="form-control" 
+								placeholder="username" required>
+							</div>
+							<div class="form-group">
+								<label>Email:</label>
+								<input type="email" name="email" id="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+								title="Please Enter Valid Name" required>
+							</div>
+							<div class="form-group">
+								<label>Password:</label>
+								<input type="password" data-minlength="6" name="password" class="form-control" id="inputpassword" data-minlength="6" placeholder="password" pattern=".{6,}" title="Six or more characters" required>
+							</div>
+							<div class="form-group">
+								<label>Confirm Password:</label>
+								<input type="password" name="cpassword" class="form-control" data-match="#inputpassword" placeholder="confirm password" id="confirm_password" required>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success">SUBMIT</button>
+							</div>
+						</form>
+					</div>
+				</div>	
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var password = document.getElementById("inputpassword")
+  , confirm_password = document.getElementById("confirm_password")
+  , name=document.getElementById('name');
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+function validatename(){
+  if(isalpha(name.value)) {
+    name.setCustomValidity("Invalid Name Field");
+  } else {
+    name.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+	</script>
+</body>
+</html>
